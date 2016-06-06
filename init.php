@@ -4,7 +4,7 @@
 require_once __DIR__."/vendor/autoload.php";
 // connexion a la base de donnees
 try{
-    $pdo = new \PDO("mysql:host=localhost;dbname=ControlleContinu","root","root");
+    $pdo = new \PDO("mysql:host=localhost;dbname=kandt","root","root");
     $pdo->query('SET NAMES \'utf8\'');
 } catch(PDOException $e){
     die($e->getMessage());
