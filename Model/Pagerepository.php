@@ -26,8 +26,13 @@ class PageRepository
     {
         $sql = "
         SELECT 
-          `body`, 
-          `title`
+          `id`,
+          `slug`,
+          `span`,
+          `body`,
+          `title`,
+          `img`,
+          `span_class`
         FROM 
           `page` 
         WHERE 
@@ -47,9 +52,12 @@ class PageRepository
         $sql = "
         SELECT 
           `id`, 
-          `slug`, 
+          `slug`,
+          `span`,
+          `body`,
           `title`,
-          `body`
+          `img`,
+          `span_class`
         FROM 
           `page` 
         ";
@@ -61,11 +69,13 @@ class PageRepository
     public function findById($id){
         $sql = "
         SELECT
-          `id`,
+           `id`,
           `slug`,
+          `span`,
+          `body`,
           `title`,
-          img,
-          `body`
+          `img`,
+          `span_class`
         FROM
           `page`
         WHERE
@@ -82,17 +92,23 @@ class PageRepository
         $sql = "
         UPDATE `page`
         SET
-        `title`= :title,
-        `body`= :body,
-        `img` = :img
+          `slug` = :slug,
+          `span` = :span ,
+          `body` = :body,
+          `title` = :title,
+          `img` = :img,
+          `span_class` = :span_class
          WHERE
         `id` = :id
         ";
         $stmt = $this->PDO->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':title', $_POST['title']);
+        $stmt->bindParam(':slug', $_POST['slug']);
+        $stmt->bindParam(':span', $_POST['span']);
         $stmt->bindParam(':body', $_POST['body']);
+        $stmt->bindParam(':title', $_POST['title']);
         $stmt->bindParam(':img', $_POST['img']);
+        $stmt->bindParam(':span_class', $_POST['span_class']);
         $stmt->execute();
     }
 
@@ -100,13 +116,22 @@ class PageRepository
 
         $sql = "
         INSERT INTO `page`
-        (`slug`, `title`, `body`, `img`)
-        VALUES (:slug, :title, :body, :img)";
+        (
+          `slug`,
+          `span`,
+          `body`,
+          `title`,
+          `img`,
+          `span_class`
+          )
+        VALUES (:slug, :span, :body, :title, :img, :span_class)";
         $stmt = $this->PDO->prepare($sql);
         $stmt->bindParam(':slug', $_POST['slug']);
-        $stmt->bindParam(':title', $_POST['title']);
+        $stmt->bindParam(':span', $_POST['span']);
         $stmt->bindParam(':body', $_POST['body']);
+        $stmt->bindParam(':title', $_POST['title']);
         $stmt->bindParam(':img', $_POST['img']);
+        $stmt->bindParam(':span_class', $_POST['span_class']);
         $stmt->execute();
     }
 

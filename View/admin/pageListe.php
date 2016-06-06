@@ -17,7 +17,7 @@
             <td><?=$page->slug?></td>
             <td><?=$page->title?></td>
             <td>
-                <a href="index.php?a=details&id=<?=$page->id?>">Detail</a>
+                <a href="index.php?a=details&id=<?=$page->id?>">Details</a>
                 <a href="index.php?a=modifier&id=<?=$page->id?>">Modifier</a>
                 <a href="index.php?a=supprimer&id=<?=$page->id?>">Supprimer</a>
             </td>

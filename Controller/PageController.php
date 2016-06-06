@@ -66,7 +66,6 @@ class PageController
             include('View/admin/pageModifier.php');
         }
 
-
     }
 
     /**
