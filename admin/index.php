@@ -9,9 +9,17 @@ if (isset($_GET['a'])) {
 $page = new \Controller\PageController($pdo);
 switch ($action) {
     case 'ajouter':
+        $page->ajoutAction();
         break;
-
-    case 'lister':
+    case 'details':
+        $page->detailsAction();
+        break;
+    case 'modifier':
+        $page->modifierAction();
+        break;
+    case 'supprimer':
+        $page->supprimerAction();
+        break;
     default:
         $page->listeAction();
         break;

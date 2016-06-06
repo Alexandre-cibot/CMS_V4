@@ -32,9 +32,12 @@ class PageController
         if(count($_POST) === 0){
             // formulaire
             // affichage de vue
+            include_once('View/admin/pageAjout.php');
         } else {
             // traitement formulaire
             // sauvegarde de la nouvelle page
+            $this->repository->createPage();
+            header('location:index.php');
         }
     }
 
@@ -43,6 +46,9 @@ class PageController
      */
     public function supprimerAction()
     {
+        $id = $_GET['id'];
+        $this->repository->deletePage($id);
+        header('location:index.php');
     }
 
     /**
@@ -50,6 +56,17 @@ class PageController
      */
     public function modifierAction()
     {
+        $id = $_GET['id'];
+        if(count($_POST)>0){
+            $this->repository->updatePage($id);
+            header('location:index.php');
+        }
+        else{
+            $data = $this->repository->findById($id);
+            include('View/admin/pageModifier.php');
+        }
+
+
     }
 
     /**
@@ -57,6 +74,9 @@ class PageController
      */
     public function detailsAction()
     {
+        $id = $_GET['id'];
+        $data = $this->repository->findById($id);
+        include('View/admin/pageDetail.php');
     }
 
     /**

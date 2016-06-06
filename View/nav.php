@@ -8,6 +8,8 @@
                 <?php foreach($nav as $page):?>
                 <li class="<?=isActive($page->slug, $slug)?>"><a href="index.php?p=<?=$page->slug?>"><?=$page->title?></a></li>
                 <?php endforeach;?>
+               <li><a href="admin/index.php">BackOffice</a></li>
+
             </ul>
         </div>
     </div>
